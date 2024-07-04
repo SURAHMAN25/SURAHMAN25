@@ -1,0 +1,1095 @@
+#include <iostream>
+#include <conio.h>
+#include <time.h>
+#include <Windows.h>
+using namespace std;
+
+class kelompok3 {
+
+   public:
+     void tampilan_header() {
+		cout << "|------------------------| sistem antrian bank |-------------------------| " << endl;
+		cout << "|------------------------| kelompok 3/ IF 04   |-------------------------| " << endl;
+		cout << endl << endl;
+	}
+
+ public:
+	void tampilan_nasabah(int pengunjung) {
+		cout << "-----------------------------------------------------------------------------------+ " << endl;
+		cout << "                                        |                                          |" << endl;
+		cout << " <--------------------------------->    |                                          |"<<endl;
+		cout << " |   Menu program Antrian Bank:    |    |              total nasabah bank          |"<< endl;
+		cout << " <--------------------------------->    |                                          |"<<endl;
+		cout << ">----------------------------------+    |                                          |" << endl;
+		cout << "| 1. Ambil nomor antrian           |    |               (" << pengunjung << ")                        |" << endl;
+		cout << "| 2. Tampilkan antrian bank        |    |                                          |" << endl;
+		cout << "| 3. Masuk sebagai teller          |    |                                          |" << endl;
+		cout << "| 4. Rincian program               |    |                                          |" << endl;
+		cout << "| 5. Keluar dar program            |    |                                          |" << endl;
+		cout << ">----------------------------------+    |" << "                 ";
+		this->tampilkantanggal();cout<<"             |"; 
+		cout << "                                                                            |                                          |"<<endl;
+		cout << "                                        |                                          |"<< endl;
+		cout << "                                        |                                          |"<< endl;
+		cout << "-----------------------------------------------------------------------------------+ " << endl << endl;
+	}
+
+ public:
+	void clrscr() {
+		system("cls");
+	}
+
+
+ public:
+	void PenghitungWaktu() {
+		clock_t WaktuBerkahir;
+		WaktuBerkahir = clock() + 1 * CLOCKS_PER_SEC;
+
+		while (clock() < WaktuBerkahir) {
+		}
+	}
+
+ public:
+	void keluarDariProgram(string pesan) {
+		for (int i = 1; i >= 0; i--) {
+			this->clrscr();
+			cout << endl << " " << pesan << endl;
+			this->PenghitungWaktu();
+
+			if (i == 0) {
+				exit(0);
+			}
+		}
+	}
+
+ public:
+	void MenampilkanLoading() {
+
+
+
+		char a = 177, b = 219;
+		cout << endl << endl << endl << endl << endl << endl << endl << endl << endl;
+		cout << endl << endl;
+		cout << "                             >>>>>>>> Membuka Program antrian bank <<<<<<<<                                " << endl << endl;
+
+		for (int i = 0; i <= 58.0;i++) {
+			cout << a;
+			cout << "\r";
+			cout <<                               "                        ";
+		}
+
+		for (int i = 0; i <= 58.0; i++) {
+			cout << b;
+
+			for (int i = 0; i <= 3e7; i++);
+
+		}
+	}
+
+	void tampilkantanggal() {
+		time_t now = time(0);
+		tm* ltm = localtime(&now);
+		string nama_bulan;
+		int tanggal = ltm->tm_mday;
+		int tahun = 2024 + ltm->tm_year;
+		int bulan = 1 + ltm->tm_mon;
+
+		if (bulan == 1) {
+			nama_bulan = "januari";
+		}
+		else if (bulan == 2) {
+			nama_bulan = "februari";
+		}
+		else if (bulan == 3) {
+			nama_bulan = "maret";
+		}
+		else if (bulan == 4) {
+			nama_bulan = "april";
+		}
+		else if (bulan == 5) {
+			nama_bulan = "mei";
+		}
+		else if (bulan == 6) {
+			nama_bulan = "juni";
+		}
+		else if (bulan == 7) {
+			nama_bulan = "juli";
+		}
+		else if (bulan == 8) {
+			nama_bulan = "agustus";
+		}
+		else if (bulan == 9) {
+			nama_bulan = "september";
+		}
+		else if (bulan == 10) {
+			nama_bulan = "oktober";
+		}
+		else if (bulan == 11) {
+			nama_bulan = "november";
+		}
+		else if (bulan == 12) {
+			nama_bulan = "desember";
+		}
+		else {
+			nama_bulan = "00";
+		}
+		cout << tanggal << " " << nama_bulan << " " << tahun;
+
+	}
+};
+
+main() {
+
+	struct TellerBanksatu {
+		int idDaftar;
+		int pengunjung_ke;
+		string nama_nasabah;
+	};
+
+	struct TellerBankdua {
+		int idDaftar;
+		int pengunjung_ke;
+		string nama_nasabah;
+		string alamat_nasabah;
+	};
+
+	struct TellerBanktiga {
+		int idDaftar;
+		int pengunjung_ke;
+		string nama_nasabah;
+	};
+
+	TellerBanksatu tellersatu[10];
+	TellerBankdua tellerdua[10];
+	TellerBanktiga tellertiga[10];
+
+	kelompok3 kel3;
+
+	string
+		nama,
+		masukan_namapenguna,
+		masukan_katasandinya,
+		pilih_menu,
+		pilih_teller,
+		pilih_menu_masuk,
+		hapus_data_teller,
+		kembali_awal,
+		istirahat_teller;
+
+	int
+		pengunjung = 0,
+		seasion_masuk = 0,
+		penghitung_teller1 = 0,
+		penghitung_teller2 = 0,
+		penghitung_teller3 = 0,
+		istirahat_teller1 = 0,
+		istirahat_teller2 = 0,
+		istirahat_teller3 = 0;
+
+
+	string namapengguna = "maman";
+	string katasandinya = "123";
+
+
+	do {
+
+		kel3.MenampilkanLoading();
+
+	awal:
+		kel3.clrscr();
+		kel3.tampilan_header();
+		kel3.tampilan_nasabah(pengunjung);
+		cout << endl << endl << " Nomor yang akan dipilih (1-5): ";
+		cin >> pilih_menu;
+
+
+
+
+		if (pilih_menu == "1") {
+			cout << endl << "---------------------------------------------------------" << endl;
+
+			if (istirahat_teller1 > 0 && istirahat_teller2 > 0 && istirahat_teller3 > 0) {
+				kel3.clrscr();
+				kel3.tampilan_header();
+				cout << endl << " maaf teller 1 sampai 3 sedang beristirahat, mohon silahkan menunggu!..." << endl;
+			}
+			else
+
+				if (penghitung_teller1 >= 5 && penghitung_teller2 >= 5 && penghitung_teller3 >= 5) {
+					kel3.clrscr();
+					kel3.tampilan_header();
+					cout << endl << " maaf teller 1 sampai 3 sudah penuh, mohon silahkan menunggu!..." << endl;
+				}
+				else {
+					kel3.clrscr();
+					kel3.tampilan_header();
+
+					cout << " Masukan nama anda: ";
+					cin >> nama;
+
+				Masukan_nomor1:
+					kel3.clrscr();
+					kel3.tampilan_header();
+
+					cout << " Nama anda: " << nama << endl;
+					cout << " Pilih teller bank (maks antrian: 5 orang ) : " << endl << endl;
+
+					cout << "---------------------------------------------------------" << endl;
+
+					if (penghitung_teller1 < 5 && istirahat_teller1 == 0) {
+						cout << endl << endl << " LAYANAN TELLER (1)" << endl;
+
+						if (penghitung_teller1 == 0) {
+							cout << " - Antrian: 0" << endl;
+							cout << " - Status: kosong";
+						}
+						else {
+							int teller1_status = 5 - penghitung_teller1;
+							cout << " -Antrian: " << penghitung_teller1 << " orang " << endl;
+
+							if (teller1_status < 5 && teller1_status > 0) {
+								cout << " -status: " << teller1_status << " yang kosong ";
+							}
+							else if (teller1_status == 0) {
+								cout << " - status: penuh";
+							}
+						}
+
+						cout << endl;
+					}
+
+					if (penghitung_teller2 < 5 && istirahat_teller2 == 0) {
+						cout << endl << endl << " LAYANAN TELLER (2) " << endl;
+
+						if (penghitung_teller2 == 0) {
+							cout << " - Antrian: 0" << endl;
+							cout << " - Status: kosong";
+						}
+						else {
+							int teller2_status = 5 - penghitung_teller2;
+							cout << " - antrian: " << penghitung_teller2 << " orang " << endl;
+
+							if (teller2_status < 5 && teller2_status > 0) {
+								cout << " - status: " << teller2_status << " yang kosong ";
+							}
+							else if (teller2_status == 0) {
+								cout << " - status: penuh";
+							}
+						}
+
+						cout << endl;
+					}
+
+					if (penghitung_teller3 < 5 && istirahat_teller3 == 0) {
+						cout << endl << endl << " LAYANAN TELLER (3) " << endl;
+
+						if (penghitung_teller3 == 0) {
+							cout << " - Antrian: 0" << endl;
+							cout << " - Status: kosong";
+						}
+						else {
+							int teller3_status = 5 - penghitung_teller3;
+							cout << " - antrian: " << penghitung_teller3 << " orang " << endl;
+
+							if (teller3_status < 5 && teller3_status > 0) {
+								cout << " - status: " << teller3_status << " yang kosong ";
+							}
+							else if (teller3_status == 0) {
+								cout << " - status: penuh";
+							}
+						}
+					}
+
+					cout << endl << endl << "------------------------------------------------------" << endl << endl;
+					cout << " * Kembali ke menu awal (0)" << endl;
+					cout << endl << " Ambil no. antrian pada teller: ";
+					cin >> pilih_teller;
+
+
+
+					if (pilih_teller == "0") {
+						goto awal;
+					}
+
+					else if (pilih_teller == "1" && penghitung_teller1 < 5) {
+						if (istirahat_teller1 > 0) {
+							kel3.clrscr();
+							kel3.tampilan_header();
+							cout << endl << " Maaf teller 1 sedang istirahat, silahkan menunggu!..." << endl << endl;
+
+							cout << " Kembali ke halaman sebelumnya (Y/T): ";
+							cin >> kembali_awal;
+
+							if (kembali_awal == "ya" || kembali_awal == "ya") {
+								goto Masukan_nomor1;
+							}
+							else {
+								goto awal;
+							}
+						}
+						else {
+							tellersatu[penghitung_teller1 + 1].nama_nasabah = nama;
+							tellersatu[penghitung_teller1 + 1].pengunjung_ke = pengunjung + 1;
+							tellersatu[penghitung_teller1 + 1].idDaftar = penghitung_teller1 + 1;
+
+
+							kel3.clrscr();
+							kel3.tampilan_header();
+							cout << " pada: teller 1" << endl;
+							cout << " Nama anda: " << tellersatu[penghitung_teller1 + 1].nama_nasabah << endl;
+							cout << " no. Antrian: " << "A-00" << tellersatu[penghitung_teller1 + 1].pengunjung_ke << endl;
+							cout << endl << "..........................................................." << endl;
+
+							pengunjung++;
+							penghitung_teller1++;
+
+						}
+					}
+
+					else if (pilih_teller == "2" && penghitung_teller2 < 5) {
+						if (istirahat_teller2 > 0) {
+							kel3.clrscr();
+							kel3.tampilan_header();
+							cout << endl << " maaf teller 2 sedang istirahat, silahkan menunggu!..." << endl << endl;
+
+							cout << " kembali kehalaman sebelumnya (ya/tidak): ";
+							cin >> kembali_awal;
+
+							if (kembali_awal == "ya" || kembali_awal == "ya") {
+								goto Masukan_nomor1;
+							}
+							else {
+								goto awal;
+							}
+						}
+						else {
+							tellerdua[penghitung_teller2 + 1].nama_nasabah = nama;
+							tellerdua[penghitung_teller2 + 1].pengunjung_ke = pengunjung + 1;
+							tellerdua[penghitung_teller2 + 1].idDaftar = penghitung_teller2 + 1;
+
+
+							kel3.clrscr();
+							kel3.tampilan_header();
+							cout << " pada: teller2 " << endl;
+							cout << " Nama anda: " << tellerdua[penghitung_teller2 + 1].nama_nasabah << endl;
+							cout << " no. Antrian: " << "B-00" << tellerdua[penghitung_teller2 + 1].pengunjung_ke << endl;
+							cout << endl << "-------------------------------------------------------------------------" << endl;
+
+							pengunjung++;
+							penghitung_teller2++;
+						}
+					}
+
+					else if (pilih_teller == "3" && penghitung_teller3 < 5 && istirahat_teller3 == 0) {
+						if (istirahat_teller3 > 0) {
+							kel3.clrscr();
+							kel3.tampilan_header();
+							cout << endl << " Maaf teller 3 sedang istirshat, silahkan menunggu!..." << endl << endl;
+
+							cout << " kembali ke halaman sebelumnya (Y/T): ";
+							cin >> kembali_awal;
+
+							if (kembali_awal == "ya" || kembali_awal == "ya") {
+								goto Masukan_nomor1;
+							}
+							else {
+								goto awal;
+							}
+						}
+						else {
+							tellertiga[penghitung_teller3 + 1].nama_nasabah = nama;
+							tellertiga[penghitung_teller3 + 1].pengunjung_ke = pengunjung + 1;
+							tellertiga[penghitung_teller3 + 1].idDaftar = penghitung_teller3 + 1;
+
+
+							kel3.clrscr();
+							kel3.tampilan_header();
+							cout << " pada: teller3" << endl;
+							cout << " Nama anda: " << tellertiga[penghitung_teller3 + 1].nama_nasabah << endl;
+							cout << " No Antrian: " << "C-00" << tellertiga[penghitung_teller3 + 1].pengunjung_ke << endl;
+							cout << endl << "----------------------------------------------------------------------" << endl;
+
+							pengunjung++;
+							penghitung_teller3++;
+						}
+					}
+
+					else {
+						kel3.clrscr();
+						kel3.tampilan_header();
+						cout << " Teller tidak tersedia!..." << endl;
+
+						cout << endl << " kembali kehalaman sebelumnya (Y/T): ";
+						cin >> kembali_awal;
+
+						if (kembali_awal == "ya" || kembali_awal == "ya") {
+							goto Masukan_nomor1;
+						}
+						else {
+							goto awal;
+						}
+					}
+				}
+
+
+
+
+		}
+
+		else if (pilih_menu == "2") {
+			kel3.clrscr();
+			kel3.tampilan_header();
+
+			cout << " LAYANAN TELLER (1) : " << endl;
+
+			if (penghitung_teller1 == 0) {
+				cout << " status: kosong" << endl;
+			}
+			else {
+
+				for (int i = 1; i < penghitung_teller1 + 1; i++) {
+					cout << "  " << i;
+					cout << ". Nama anda: " << tellersatu[i].nama_nasabah << endl;
+					cout << " No. Antrian: " << "A-00" << tellersatu[i].pengunjung_ke << endl << endl;
+				}
+			}
+
+			cout << endl << "--------------------------------------------------------------------" << endl << endl;
+			cout << " LAYANAN TELLER (2) : " << endl;
+
+
+			if (penghitung_teller2 == 0) {
+				cout << "  status: kosong" << endl;
+			}
+			else {
+				for (int i = 1; i < penghitung_teller2 + 1; i++) {
+					cout << "   " << i;
+					cout << ". Nama Anda: " << tellerdua[i].nama_nasabah << endl;
+					cout << " No.  Antrian: " << "B-00" << tellerdua[i].pengunjung_ke << endl << endl;
+				}
+			}
+
+			cout << endl << "---------------------------------------------------------------------" << endl << endl;
+
+			cout << " LAYANAN TELLER (3) : " << endl;
+
+			if (penghitung_teller3 == 0) {
+				cout << "  status: kosong" << endl;
+			}
+			else {
+
+				for (int i = 1; i < penghitung_teller3 + 1; i++) {
+					cout << "   " << i;
+					cout << ". Nama Anda: " << tellertiga[i].nama_nasabah << endl;
+					cout << "     No. Antrian: " << "C-00" << tellertiga[i].pengunjung_ke << endl << endl;
+				}
+			}
+
+			cout << endl << "----------------------------------------------------------------------" << endl << endl;
+
+		}
+
+		else if (pilih_menu == "3") {
+
+			if (seasion_masuk != 0) {
+			masukanadmin_1:
+				kel3.clrscr();
+				kel3.tampilan_header();
+
+
+				cout << " Selamat datang! " << masukan_namapenguna << "!" << endl;
+				cout << " Menu untuk teller: " << endl;
+				cout << " ----------------------------------------+" << endl;
+				cout << " 1. Hapus data sesuai teller 1-3         |" << endl;
+				cout << " 2. Hapus data semua teller              |" << endl;
+				cout << " 3. Kembali ke menu awal                 |" << endl;
+				cout << " 4. Aktifkan jam kerja                   |" << endl;
+				cout << " 5. Tutup teller (istirahat jam kerja    |" << endl;
+				cout << " 6. Keluar dari akun                     |" << endl;
+				cout << " ----------------------------------------+" << endl;
+
+				cout << endl << endl << " Nomor yang akan dipilih (1-6): ";
+				cin >> pilih_menu_masuk;
+
+				if (pilih_menu_masuk == "1") {
+
+				    hapus_dat_tel:
+					    kel3.clrscr();
+						kel3.tampilan_header();
+
+						cout << " Data yang akan dihapus pada teller:" << endl;
+						cout << " -LAYANAN TELLER (1)" << endl;
+						cout << " -LAYANAN TELLER (2)" << endl; 
+						cout << " -LAYANAN TELLER (3)" << endl << endl;
+
+						cout << " * kembali ke menu awal(0)" << endl;
+						cout << " -------------------------------------------------------------------+" << endl << endl;
+						cout << " pilih pada nomor: ";
+						cin >> hapus_data_teller;
+
+					if (hapus_data_teller == "0") {
+						goto masukanadmin_1;
+					}
+
+					else if (hapus_data_teller == "1") {
+
+						if (penghitung_teller1 == 0) {
+							kel3.clrscr();
+							kel3.tampilan_header();
+							cout << " Data pada teller (1) masih kosong!" << endl << endl;
+						}
+						else {
+							for (int i = 1; i < penghitung_teller1 + 1; i++) {
+								tellersatu[i] = tellersatu[i + 1];
+							}
+
+							penghitung_teller1 = 0;
+
+							kel3.clrscr();
+							kel3.tampilan_header();
+
+							cout << " Data pada teller (1) berhasil dihapus" << endl << endl;
+						}
+
+						cout << " --------------------------------------------------------------------+" << endl << endl;
+
+						
+						cout << " kembali ke halaman sebelumnya (Y/T): ";
+						cin >> kembali_awal;
+
+						if (kembali_awal == "Y" || kembali_awal == "Y") {
+							goto hapus_dat_tel;
+						}
+						else {
+							goto masukanadmin_1;
+						}
+					}
+
+					else if (hapus_data_teller == "2") {
+
+						if (penghitung_teller2 == 0) {
+							kel3.clrscr();
+							kel3.tampilan_header();
+							cout << " Data pada teller (2) masih kosong!" << endl << endl;
+						}
+						else {
+							for (int i = 1; i < penghitung_teller2 + 1; i++) {
+								tellerdua[i] = tellerdua[i + 1];
+							}
+
+							penghitung_teller2 = 0;
+
+							kel3.clrscr();
+							kel3.tampilan_header();
+
+							cout << " Data pada  teller(2) berhasil di hapus " << endl << endl;
+						}
+
+						cout << " --------------------------------------------------------------------+" << endl << endl;
+						cout << "Kembali ke halaman sebelumnya (Y/T): ";
+						cin >> kembali_awal;
+
+						if (kembali_awal == "Y" || kembali_awal == "Y") {
+							goto hapus_dat_tel;
+						}
+						else {
+							goto masukanadmin_1;
+						}
+					}
+					else if (hapus_data_teller == "3") {
+
+						if (penghitung_teller3 == 0) {
+							kel3.clrscr();
+							kel3.tampilan_header();
+							cout << " Data pada teller ke 3 masih kosong!" << endl << endl;
+						}
+						else {
+							for (int i = 1; i < penghitung_teller3 + 1; i++) {
+								tellertiga[i] = tellertiga[i + 1];
+							}
+
+							penghitung_teller3 = 0;
+
+							kel3.clrscr();
+							kel3.tampilan_header();
+
+							cout << " Data pada teller ke (3) berhasil di hapus" << endl << endl;
+						}
+
+						cout << " --------------------------------------------------------------------+" << endl << endl;
+						cout << " Kembali ke halaman sebelumnya (Y/T): ";
+						cin >> kembali_awal;
+
+						if (kembali_awal == "Y" || kembali_awal == "Y") {
+							goto hapus_dat_tel;
+						}
+						else {
+							goto masukanadmin_1;
+						}
+					}
+				}
+				else if (pilih_menu_masuk == "2") {
+					if (penghitung_teller1 == 0 && penghitung_teller2 == 0 && penghitung_teller3 == 0) {
+						kel3.clrscr();
+						kel3.tampilan_header();
+
+						cout << " Data teller 1,2 dan 3 masih kosong!" << endl << endl;
+					}
+					else {
+						kel3.clrscr();
+						kel3.tampilan_header();
+
+						cout << " - Data pada teller 1" << endl;
+						if (penghitung_teller1 == 0) {
+							cout << "   Pesan: Data teller 1 masih kosong " << endl;
+							cout << "   Status: Tidak dapat menghapus data";
+						}
+						else {
+							cout << "   Pesan: Data teller 1 (" << penghitung_teller1 << "Orang)" << endl;
+							cout << "   Status: Data berhasil di hapus";
+						}
+
+						cout << endl << endl;	
+
+						cout << " - Data pada teller 2" << endl;
+						if (penghitung_teller2 == 0) {
+							cout << "   Pesan: Data teller 2 masih kosong " << endl;
+							cout << "   Status: Tidak dapat menghapus data";
+						}
+						else {
+							cout << "   Pesan: Data teller 2 (" << penghitung_teller2 << "Orang)" << endl;
+							cout << "   Status: Data berhasil di hapus";
+						}
+
+						cout << endl << endl;
+
+						cout << " - Data pada teller 3" << endl;
+						if (penghitung_teller3 == 0) {
+							cout << "   Pesan: Data teller 3 masih kosong " << endl;
+							cout << "   Status: Tidak dapat menghapus data";
+						}
+						else {
+							cout << "   Pesan: Data teller 3 (" << penghitung_teller3 << "orang)" << endl;
+							cout << "   Status: Data berhasil di hapus";
+						}
+
+						if (tellersatu != NULL) {
+							
+							for (int i = 1; i < penghitung_teller1 + 1; i++) {
+								tellersatu[i] = tellersatu[i + 1];
+							}
+
+							penghitung_teller1 = 0;
+						}
+
+						if (tellerdua != NULL) {
+							for (int i = 1; i < penghitung_teller2 + 1; i++) {
+								tellerdua[i] = tellerdua[i + 1];
+							}
+
+							penghitung_teller2 = 0;
+						}
+
+						if (tellertiga != NULL) {
+							for (int i = 1; i < penghitung_teller3 + 1; i++) {
+								tellertiga[i] = tellertiga[i + 1];
+							}
+
+							penghitung_teller3 = 0;
+						}
+
+						cout << endl << endl;
+						cout << " --------------------------------------------------------------------+" << endl << endl;
+					}
+
+					cout << " Kembali ke halaman sebelumnya (Y/T): ";
+					cin >> kembali_awal;
+
+					if (kembali_awal == "Y" || kembali_awal == "Y") {
+						goto masukanadmin_1;
+					}
+					else {
+						goto awal;
+					}
+				}
+				else if (pilih_menu_masuk == "3") {
+					goto awal;
+
+				}
+				else if (pilih_menu_masuk == "4") {
+				    aktif_jamkerja:
+					kel3.clrscr();
+					kel3.tampilan_header();
+
+					cout << " Pilih teller yang ingin di aktifkan jam kerja: " << endl;
+					cout << " ----------------------------------------------------+" << endl;
+					cout << "                                                     |" << endl;
+					cout << "  LAYANAN TELLER (1)                                 |" << endl;
+
+					if (istirahat_teller1 == 0) {
+						cout << "  Status: Aktif                                      |";
+					}
+					else {
+						cout << " Status: Istirahat                                    |";
+					}
+
+					cout << endl << "                                                     |" << endl;
+					
+
+					cout << "  LAYANAN TELLER (2)                                 |" << endl;
+
+					if (istirahat_teller2 == 0) {
+						cout << "  Status: Aktif                                      |";
+					}
+					else {
+						cout << " Status: Istirahat                                    |";
+					}
+
+					cout << endl << "                                                     |" << endl;
+					
+
+					cout << " LAYAYAN TELLER (3)                                  |" << endl;
+
+					if (istirahat_teller3 == 0) {
+						cout << "  Status: Aktif                                      |";
+					}
+					else {
+						cout << " Status: Istirahat                                     |";
+					}
+
+					cout << endl << "                                                     |" << endl;
+
+					cout << "-----------------------------------------------------+" << endl << endl;
+
+					cout << " * kembali ke menu  awal (0);" << endl;
+					cout << " Pilih teller yang  kerja (1-3): ";
+					cin >> istirahat_teller;
+
+					if (istirahat_teller == "0") {
+						goto masukanadmin_1;
+					}
+					else if (istirahat_teller == "1") {
+						if (penghitung_teller1 < 5 && penghitung_teller1 != 0) {
+							kel3.clrscr();
+							kel3.tampilan_header();
+
+							cout << " Maaaf teller 1 sedang melayani nasabah, coba lagi nanti!";
+						}
+						else {
+							if (istirahat_teller1 == 0) {
+								kel3.clrscr();
+								kel3.tampilan_header();
+
+								cout << " Teller 1 masih aktif";
+							}
+							else {
+								kel3.clrscr();
+								kel3.tampilan_header();
+
+								cout << " Teler 1 berkerja kemabli!";
+								istirahat_teller1 = 0;
+							}
+						}
+					}
+					else if (istirahat_teller == "2") {
+						if (penghitung_teller2 < 5 && penghitung_teller2 != 0) {
+							kel3.clrscr();
+							kel3.tampilan_header();
+
+							cout << " Maaf teller 2 sedang melayani nasabah, coba lagi nanti!";
+						}
+						else {
+							if (istirahat_teller2 == 0) {
+								kel3.clrscr();
+								kel3.tampilan_header();
+
+								cout << " Teller 2 masih aktif";
+							}
+							else {
+								kel3.clrscr();
+								kel3.tampilan_header();
+
+								cout << " Teller 2 telah berkerja kembali!";
+								istirahat_teller2 = 0;
+							}
+						}
+					}
+					else if (istirahat_teller == "3") {
+						if (penghitung_teller3 < 5 && penghitung_teller3 != 0) {
+							kel3.clrscr();
+							kel3.tampilan_header();
+
+							cout << " Maaf teller 3 sedang layani nasabah, coba nanti!";
+						}
+						else {
+							if (istirahat_teller3 == 0) {
+								kel3.clrscr();
+								kel3.tampilan_header();
+
+								cout << " Teller 3 masih aktif";
+							}
+							else {
+								kel3.clrscr();
+								kel3.tampilan_header();
+
+								cout << " Teller 3 telah berkerja kembali!";
+								istirahat_teller3 = 0;
+							}
+						}
+					}
+					else {
+						cout << " Tidak ada teller yang di pilih...";
+					}
+
+					cout << endl << endl;
+
+					cout << " Kembali ke halaman sebelumnya (Y/T): ";
+					cin >> kembali_awal;
+
+					if (kembali_awal == "Y" || kembali_awal == "Y") {
+						goto aktif_jamkerja;
+					}
+					else {
+						goto masukanadmin_1;
+					}
+				}
+				else if (pilih_menu_masuk == "5") {
+					awal_istirahhat:
+					kel3.clrscr();
+					kel3.tampilan_header();
+
+					cout << " Pilih teller yang ingin diberi jam istirahat: " << endl;
+					cout << " ---------------------------------------------------+" << endl;
+					cout << "                                                    |" << endl;
+					cout << "LAYANAN TELLER  (1)                                 |" << endl;
+
+					if (istirahat_teller1 == 0) {
+					 cout << " Status: Aktif                                      |";
+					}
+					else {
+					 cout << " Status: Istirahat                                  |";
+					}
+
+					cout << endl << "                                                    |"<<endl;
+					
+
+					cout << "LAYANAN TELLER (2)                                  |"<<endl;
+
+					if (istirahat_teller2 == 0) {
+					 cout << "  Status: Aktif                                     |";
+					}
+					else {
+					 cout << " Status: Istirahat                                  |";
+					}
+
+					cout << endl << "                                                    |"<<endl;
+					
+
+					cout <<"LAYANAN TELLER (3)                                  |"<<endl;
+					
+					if (istirahat_teller3 == 0) {
+					 cout << "  Status: aktif                                     |";
+					}
+					else {
+					 cout <<" Status: Istirahat                                   |";
+					}
+					
+					cout << endl << "                                                    |"<<endl;
+					
+					
+					cout << "----------------------------------------------------+" << endl;
+
+					cout << " * Kembali ke menu awal (0);" << endl;
+					cout << " Pilih teller yang akan istirahat (1-3): ";
+					cin >> istirahat_teller;
+
+					if (istirahat_teller == "0") {
+						goto masukanadmin_1;
+					}
+					else if (istirahat_teller == "1"){
+						if (penghitung_teller1 < 5 && penghitung_teller1 != 0) {
+							kel3.clrscr();
+							kel3.tampilan_header();
+
+							cout << " Maaf teller 1 sedang melayani nasabah, coba lagi nanti!";
+						}
+						else {
+							if (istirahat_teller1 != 0) {
+								kel3.clrscr();
+								kel3.tampilan_header();
+
+								cout << " Teller 1 kondisi masih beristirhat ";
+
+							}
+							else {
+								kel3.clrscr();
+								kel3.tampilan_header();
+
+								cout << " Teller 1 telah di nonaktifkan";
+								istirahat_teller1++;
+							}
+						}
+					}
+					else if (istirahat_teller == "2") {
+						if (penghitung_teller2 < 5 && penghitung_teller2 != 0) {
+							kel3.clrscr();
+							kel3.tampilan_header();
+
+							cout << " Maaf teller 2 sedang melayani nasabah, coba lagi nanti!";
+						}
+						else {
+							if (istirahat_teller2 != 0) {
+								kel3.clrscr();
+								kel3.tampilan_header();
+
+								cout << " Teller 2 kondisi masih istirahat";
+							}
+							else {
+								kel3.clrscr();
+								kel3.tampilan_header();
+
+								cout << " Teller 2 telah dinonaktifkan";
+								istirahat_teller2++;
+							}
+						}
+					}
+					else if (istirahat_teller == "3") {
+						if (penghitung_teller3 < 5 && penghitung_teller3 != 0) {
+							kel3.clrscr();
+							kel3.tampilan_header();
+
+							cout << " Maaf teller 3 sedang melayani nasabah, coba lagi nanti!";
+						}
+						else {
+							if (istirahat_teller3 != 0) {
+								kel3.clrscr();
+								kel3.tampilan_header();
+
+								cout << " Teller 3 konsidi masih istirahat";
+							}
+							else {
+								kel3.clrscr();
+								kel3.tampilan_header();
+
+								cout << " Teller 3 sedang dinonaktifkan";
+								istirahat_teller3++;
+							}
+						}
+					}
+					else {
+						cout << " Tidak ada teller yang di pilih...";
+					}
+
+					cout << endl << endl;
+
+					cout << " Kembali ke halaman sebelumnya (Y/T): ";
+					cin >> kembali_awal;
+
+					if (kembali_awal == "Y" || kembali_awal == "Y") {
+						goto awal;
+					}
+					else {
+						goto masukanadmin_1;
+					}
+
+				}
+				else if (pilih_menu_masuk == "6") {
+					kel3.clrscr();
+					kel3.tampilan_header();
+					cout << " Berhasil keluar dari akun!" << endl << endl;
+					seasion_masuk--;
+				}
+				else {
+					kel3.clrscr();
+					kel3.tampilan_header();
+
+					cout << " Menu yang anda pilih  tidak tersedia!";
+					cout << endl << endl;
+					cout << " Kembali ke halaman sebelumnya (Y/T): ";
+					cin >> kembali_awal;
+
+					if (kembali_awal == "Y" || kembali_awal == "Y") {
+						goto masukanadmin_1;
+					}
+					else {
+						goto awal;
+					}
+				}
+
+			}
+			else {
+
+				masukanadmin:
+				kel3.clrscr();
+				kel3.tampilan_header();
+				cout << " Masukan nama teller  : ";
+				cin >> masukan_namapenguna;
+
+				cout << " Masukan katasandi    : ";
+				cin >> masukan_katasandinya;
+
+
+				
+				if (masukan_namapenguna != namapengguna || masukan_katasandinya != katasandinya) {
+					kel3.clrscr();
+					kel3.tampilan_header();
+
+					cout << " Nama teller atau katasandi salah!";
+					cout << endl << endl;
+					cout << " Kembali ke halaman sebelumnya (Y/T): ";
+					cin >> kembali_awal;
+
+					if (kembali_awal == "Y" || kembali_awal == "Y") {
+						goto masukanadmin;
+					}
+					else {
+						goto awal;
+					}
+				}
+				else {
+
+					seasion_masuk++;
+					goto masukanadmin_1;
+				}
+			}
+		}
+		else if (pilih_menu == "4") {
+			kel3.clrscr();
+			kel3.tampilan_header();
+
+
+			cout << " Rincian  program: " << endl;
+			cout << "---------------------------------------------------------------------+" << endl;
+			cout << "    - Nama program                   : program antrian bank          |" << endl;
+			cout << "    - Tanggal pembuatan program      : senin, 27 juni 2024           |" << endl;
+			cout << "    - Mengunakan bahasa program      : C++                           |" << endl;
+			cout << "    - Nama kelompok                  : kelompok 3                    |" << endl;
+			cout << "    - Kelsa                          : INFORMATIKA 04                |" << endl;
+			cout << "---------------------------------------------------------------------+" << endl << endl;
+			cout << endl << endl;
+
+		}
+
+		else {
+			kel3.clrscr();
+			kel3.tampilan_header();
+			cout << " Tidak ada pilihan menu..." << endl << endl;
+			cout << endl << " Tekan Enter untuk kembali -> ";
+
+			if (getch()) {
+				goto awal;
+			}
+		}
+
+		cout << endl << " Tekan Enter untuk kemabli -> ";
+
+		if (getch()) {
+			goto awal;
+		}
+	}
+
+	while (kembali_awal == "Y" || kembali_awal == "Y");
+
+	getch();
+
+}
